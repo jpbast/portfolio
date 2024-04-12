@@ -33,6 +33,7 @@ const MobileNav = ({
           <Button
             label={link.title}
             variant={index < links.length - 1 ? "text" : "default"}
+            color="secondary"
             onClick={() => setOpened(false)}
           />
         </Link>
@@ -81,6 +82,7 @@ const Header: React.FC = () => {
                 <Button
                   label={link.title}
                   variant={index < links.length - 1 ? "text" : "default"}
+                  color="secondary"
                 />
               </Link>
             ))}

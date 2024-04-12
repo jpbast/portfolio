@@ -1,4 +1,5 @@
 import Carousel from "@/components/Carousel";
+import ContactForm from "@/components/ContactForm";
 import Section from "@/components/Section";
 import Image from "next/image";
 
@@ -84,6 +85,16 @@ export default function Home() {
           visit it for more details
         </p>
         <Carousel />
+      </Section>
+      <Section
+        className="bg-secondary"
+        isFullHeight
+        containerClassName="flex flex-col gap-6"
+      >
+        <h2 className="px-content text-center text-4xl font-bold text-secondary">
+          Contact me
+        </h2>
+        <ContactForm />
       </Section>
     </main>
   );
