@@ -14,12 +14,12 @@ export async function POST(req: NextRequest) {
 
   try {
     const data = await resend.emails.send({
-      from: `${body.name} <${body.email}>'`,
+      from: `${body.name} <noreply@resend.dev>`,
       to: process.env.EMAIL_TO as string,
       subject: `Contact from website - ${body.name}`,
-      text: body.message,
+      text: `${body.message}\n\n${body.email}`,
     });
-    console.log(data);
+
     return NextResponse.json({ status: 200 });
   } catch (error) {
     return NextResponse.json({ error });

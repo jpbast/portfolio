@@ -13,8 +13,10 @@ const config: Config = {
         content: "1200px",
       },
       colors: {
-        primary: "#402255",
-        secondary: colors.yellow["200"],
+        primary: "#321F70",
+        secondary: colors.yellow["50"],
+        "text-primary": "#321F70",
+        "text-secondary": "white",
       },
       padding: {
         content: "16px",

@@ -7,6 +7,8 @@ type SectionProps = {
   backgroundImage?: string;
   containerClassName?: string;
   disablePaddingX?: boolean;
+  color?: "primary" | "secondary";
+  id?: string;
 } & React.HTMLProps<HTMLDivElement>;
 
 const Section: React.FC<PropsWithChildren<SectionProps>> = ({
@@ -17,10 +19,13 @@ const Section: React.FC<PropsWithChildren<SectionProps>> = ({
   containerClassName,
   className,
   disablePaddingX,
+  color,
+  ...props
 }) => {
   return (
     <section
-      className={`relative w-full ${className} ${isFullHeight ? "h-screen" : ""} ${isMobileFullHeight ? "max-[700px]:h-screen" : "max-[700px]:h-auto"}`}
+      className={`relative w-full  ${isFullHeight ? "h-screen" : ""} ${isMobileFullHeight ? "max-[700px]:h-screen" : "max-[700px]:h-auto"} ${backgroundImage ? "bg-transparent" : color === "primary" ? "!text-text-secondary bg-primary" : "!text-text-primary bg-secondary"} ${className}`}
+      {...props}
     >
       {backgroundImage && (
         <div className="absolute -z-10 h-full w-full bg-black opacity-30">
@@ -29,6 +34,7 @@ const Section: React.FC<PropsWithChildren<SectionProps>> = ({
             className="bottom-0 left-0 right-0 top-0 object-cover"
             alt="Laptop over table displaying HTML code"
             fill
+            sizes="100vw"
           />
         </div>
       )}
