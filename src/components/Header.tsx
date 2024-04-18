@@ -5,6 +5,7 @@ import Button from "@/components/Button";
 import Link from "next/link";
 import Image from "next/image";
 import { IoIosMenu } from "react-icons/io";
+import { navigateToId } from "@/utils/navigation";
 
 const links = [
   { title: "Home", to: "home" },
@@ -58,15 +59,7 @@ const Header: React.FC = () => {
               href={link.to}
               onClick={(e) => {
                 e.preventDefault();
-                const element = document.getElementById(link.to);
-
-                if (element) {
-                  window.scrollTo({
-                    top: element.offsetTop - 40,
-                    behavior: "smooth",
-                  });
-                  window.history.pushState(null, "", `#${link.to}`);
-                }
+                navigateToId(link.to);
               }}
             >
               <Button

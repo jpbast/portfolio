@@ -1,15 +1,13 @@
 "use client";
 
-import Image from "next/image";
 import React, { useRef } from "react";
 import Slider, { Settings } from "react-slick";
-import { FaChevronLeft, FaChevronDown } from "react-icons/fa6";
+import { FaChevronLeft } from "react-icons/fa6";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "@/components/styles.css";
 import { FaChevronRight } from "react-icons/fa";
-import Button from "@/components/Button";
 
 type SlideButtonProps = {
   position: "left" | "right";
@@ -29,61 +27,20 @@ const SlideButton: React.FC<SlideButtonProps> = ({ position, onClick }) => {
   );
 };
 
-type CarouselItem = {
-  title: string;
-  description: string;
-  imageUrl: string;
-  onClick: () => void;
-};
+export type CarouselItemArgs<T> = { data: T; index: number };
 
-const Item: React.FC<CarouselItem> = ({
-  title,
-  description,
-  imageUrl,
-  onClick,
-}) => {
-  return (
-    <div className="transition-scale group flex h-[400px] w-full px-5 py-3 duration-300 hover:scale-105 max-[600px]:px-content">
-      <div className="relative flex cursor-pointer flex-col justify-end overflow-hidden rounded-xl p-5 shadow-project-card">
-        <Image
-          src={imageUrl}
-          alt=""
-          fill
-          sizes="(max-width: 600px) 100vw, 470px"
-          className="-z-10 h-full w-full object-cover"
-        />
-        <h2 className="mb-1 text-2xl font-bold">{title}</h2>
-        <p className="text-base">{description}</p>
-        <button
-          className="absolute bottom-0 left-0 right-0 top-0 flex items-center justify-center gap-2 bg-[#000000c0] opacity-0 transition-all duration-300 group-hover:opacity-100"
-          onClick={onClick}
-        >
-          <FaChevronDown />
-          Click here for more details
-        </button>
-      </div>
-    </div>
-  );
-};
-
-type CarouselProps = {
+type CarouselProps<T> = {
+  renderItem: ({ data, index }: CarouselItemArgs<T>) => React.ReactNode;
+  data: T[];
   color?: "primary" | "secondary";
-  onClick: () => void;
 };
 
-const Carousel: React.FC<CarouselProps> = ({ color = "primary", onClick }) => {
+function Carousel<T>({
+  color = "primary",
+  renderItem,
+  data,
+}: CarouselProps<T>) {
   const sliderRef = useRef<Slider | null>(null);
-
-  const data = [
-    ...Array(6)
-      .fill(0)
-      .map(() => ({
-        imageUrl: "/hero.png",
-        title: "This is the title",
-        description:
-          "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum",
-      })),
-  ];
 
   const settings: Settings = {
     swipeToSlide: true,
@@ -118,9 +75,7 @@ const Carousel: React.FC<CarouselProps> = ({ color = "primary", onClick }) => {
   return (
     <div className="relative">
       <Slider ref={sliderRef} {...settings}>
-        {data.map((d) => (
-          <Item key={d.title} onClick={onClick} {...d} />
-        ))}
+        {data.map((d, index) => renderItem({ data: d, index }))}
       </Slider>
       <SlideButton
         position="left"
@@ -132,6 +87,6 @@ const Carousel: React.FC<CarouselProps> = ({ color = "primary", onClick }) => {
       />
     </div>
   );
-};
+}
 
 export default Carousel;

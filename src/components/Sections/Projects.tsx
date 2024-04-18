@@ -3,12 +3,13 @@
 import React, { useState } from "react";
 import Carousel from "@/components/Carousel";
 import Section from "@/components/Section";
-import { enotecaMundi } from "@/data/projects";
+import { projects } from "@/data/projects";
 import ExpandableCard from "@/components/ExpandableCard";
-import Button from "@/components/Button";
-import { FaChevronUp } from "react-icons/fa6";
+import ProjectCard, { ProjectCardProps } from "@/components/ProjectCard";
+import { navigateToId } from "@/utils/navigation";
 
 const Projects: React.FC = () => {
+  const [project, setProject] = useState<ProjectCardProps | null>(null);
   const [expanded, setExpanded] = useState(false);
 
   const color = "primary" as "primary" | "secondary";
@@ -31,20 +32,33 @@ const Projects: React.FC = () => {
       </p>
       <Carousel
         color={color === "primary" ? "secondary" : "primary"}
-        onClick={() => setExpanded(!expanded)}
-      />
-      <ExpandableCard expanded={expanded}>
-        <div className="flex flex-col gap-2 px-content">
-          <h2 className="text-3xl font-bold">{enotecaMundi.title}</h2>
-          {enotecaMundi.text}
-          <Button
-            label="Close"
-            color="secondary"
-            variant="text"
-            className="ml-auto w-max"
-            icon={<FaChevronUp />}
-            onClick={() => setExpanded(false)}
+        data={projects as ProjectCardProps[]}
+        renderItem={(props) => (
+          <ProjectCard
+            {...props}
+            key={props.index}
+            data={{
+              ...props.data,
+              onClick: () => {
+                setProject(props.data);
+                setExpanded(true);
+                navigateToId("projects", 580);
+              },
+            }}
           />
+        )}
+      />
+      <ExpandableCard
+        expanded={expanded}
+        trigger={project?.title}
+        onClose={() => {
+          setExpanded(false);
+          navigateToId("projects");
+        }}
+      >
+        <div className="mt-5 flex flex-col gap-2">
+          <h2 className="text-3xl font-bold">{project?.title}</h2>
+          {project?.text}
         </div>
       </ExpandableCard>
     </Section>
