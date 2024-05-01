@@ -33,11 +33,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
     rgb(var(--background-start-rgb));
 
   ul.slick-dots {
@@ -47,10 +43,10 @@ body {
       }
     }
   }
-}
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  @media (min-width: 1400px) {
+    .slick-list {
+      padding-left: 70px;
+    }
   }
 }

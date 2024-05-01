@@ -1,6 +1,6 @@
-import React, { PropsWithChildren, useRef, useState, useEffect } from "react";
-import Button from "@/components/Button";
-import { FaChevronUp } from "react-icons/fa6";
+import React, { PropsWithChildren, useRef, useState, useEffect } from 'react';
+import Button from '@/components/Button';
+import { FaChevronUp } from 'react-icons/fa6';
 
 type ExpandableCardProps = {
   expanded: boolean;
@@ -33,7 +33,7 @@ const ExpandableCard: React.FC<PropsWithChildren<ExpandableCardProps>> = ({
         label="Close"
         color="secondary"
         variant="text"
-        className="ml-auto w-max"
+        className="ml-auto mt-2 w-max"
         icon={<FaChevronUp />}
         onClick={onClose}
       />

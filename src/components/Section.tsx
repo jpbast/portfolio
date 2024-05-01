@@ -1,5 +1,5 @@
-import Image from "next/image";
-import React, { PropsWithChildren } from "react";
+import Image from 'next/image';
+import React, { PropsWithChildren } from 'react';
 
 type SectionProps = {
   isFullHeight?: boolean;
@@ -7,7 +7,8 @@ type SectionProps = {
   backgroundImage?: string;
   containerClassName?: string;
   disablePaddingX?: boolean;
-  color?: "primary" | "secondary";
+  disableMaxWidth?: boolean;
+  color?: 'primary' | 'secondary';
   id?: string;
 } & React.HTMLProps<HTMLDivElement>;
 
@@ -19,12 +20,13 @@ const Section: React.FC<PropsWithChildren<SectionProps>> = ({
   containerClassName,
   className,
   disablePaddingX,
+  disableMaxWidth,
   color,
   ...props
 }) => {
   return (
     <section
-      className={`relative w-full  ${isFullHeight ? "h-screen" : ""} ${isMobileFullHeight ? "max-[700px]:h-screen" : "max-[700px]:h-auto"} ${backgroundImage ? "bg-transparent" : color === "primary" ? "!text-text-secondary bg-primary" : "!text-text-primary bg-secondary"} ${className}`}
+      className={`relative w-full  ${isFullHeight ? 'h-screen' : ''} ${isMobileFullHeight ? 'max-[700px]:h-screen' : 'max-[700px]:h-auto'} ${backgroundImage ? 'bg-transparent' : color === 'primary' ? 'bg-gradient-to-br from-slate-900 via-indigo-950 to-primary !text-text-secondary' : 'bg-secondary bg-gradient-to-br from-gray-200 !text-text-primary'} ${className}`}
       {...props}
     >
       {backgroundImage && (
@@ -39,7 +41,7 @@ const Section: React.FC<PropsWithChildren<SectionProps>> = ({
         </div>
       )}
       <div
-        className={`mx-auto max-w-content  py-12 ${containerClassName} ${disablePaddingX ? "" : "px-content"}`}
+        className={`mx-auto py-12 ${containerClassName} ${disablePaddingX ? '' : 'px-content'} ${disableMaxWidth ? '' : 'max-w-content'}`}
       >
         {children}
       </div>

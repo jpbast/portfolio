@@ -1,22 +1,20 @@
-import React from "react";
-import Image from "next/image";
-import { FaChevronLeft, FaChevronDown } from "react-icons/fa6";
-import { CarouselItemArgs } from "@/components/Carousel";
-import { Project } from "@/typings/project";
-import Button from "@/components/Button";
+import React from 'react';
+import Image from 'next/image';
+import { FaChevronLeft, FaChevronDown } from 'react-icons/fa6';
+import { CarouselItemArgs } from '@/components/Carousel';
+import { Project } from '@/typings/project';
+import Button from '@/components/Button';
 
 export type ProjectCardProps = Project & {
   onClick?: () => void;
 };
 
-const ProjectCard: React.FC<CarouselItemArgs<ProjectCardProps>> = ({
-  data,
-}) => {
+const ProjectCard: React.FC<CarouselItemArgs<ProjectCardProps>> = ({ data }) => {
   const { title, shortDescription, thumbnail, onClick } = data;
 
   return (
-    <div className="transition-scale group flex h-[400px] w-full px-5 py-3 duration-300 hover:scale-105 max-[600px]:px-content">
-      <div className="relative flex cursor-pointer flex-col justify-end overflow-hidden rounded-xl p-5 shadow-project-card">
+    <div className="transition-scale flex h-[400px] w-full px-5 py-3 duration-300 hover:scale-105 max-[600px]:px-content">
+      <div className="group relative flex w-full cursor-pointer flex-col justify-end overflow-hidden rounded-xl bg-gradient-to-t from-black to-[#00000060] p-5">
         <Image
           src={thumbnail}
           alt=""
