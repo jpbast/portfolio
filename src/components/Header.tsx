@@ -1,52 +1,22 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import Button from "@/components/Button";
-import Link from "next/link";
-import useMediaQuery from "@/hooks/useMediaQuery";
-import Image from "next/image";
-import { IoIosMenu } from "react-icons/io";
+import React, { useEffect, useState } from 'react';
+import Button from '@/components/Button';
+import Link from 'next/link';
+import Image from 'next/image';
+import { IoIosMenu } from 'react-icons/io';
+import { navigateToId } from '@/utils/navigation';
 
 const links = [
-  { title: "Home", to: "#home" },
-  { title: "About", to: "#about" },
-  { title: "Projects", to: "#projects" },
-  { title: "Hire me", to: "#contact" },
+  { title: 'Home', to: 'home' },
+  { title: 'About', to: 'about' },
+  { title: 'Projects', to: 'projects' },
+  { title: 'Hire me', to: 'contact' },
 ];
-
-const MobileNav = ({
-  opened,
-  setOpened,
-}: {
-  opened: boolean;
-  setOpened: (opened: boolean) => void;
-}) => (
-  <>
-    <button onClick={() => setOpened(!opened)}>
-      <IoIosMenu size={42} />
-    </button>
-    <nav
-      className={`absolute left-0 top-[80px] flex h-screen w-screen flex-col items-start gap-5 bg-primary px-content pt-2 transition-all duration-300 ${opened ? "opacity-1 translate-x-[0%]" : "-translate-x-[100%] opacity-0"}`}
-    >
-      {links.map((link, index) => (
-        <Link key={link.title} href={link.to}>
-          <Button
-            label={link.title}
-            variant={index < links.length - 1 ? "text" : "default"}
-            color="secondary"
-            onClick={() => setOpened(false)}
-          />
-        </Link>
-      ))}
-    </nav>
-  </>
-);
 
 const Header: React.FC = () => {
   const [isTransparent, setIsTransparent] = useState(true);
   const [opened, setOpened] = useState(false);
-
-  const isMobile = useMediaQuery("(max-width: 700px)");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,14 +24,15 @@ const Header: React.FC = () => {
       setIsTransparent(offset < 40);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <header
-      className={`fixed z-10 w-full transition-all duration-300 ${opened ? "bg-primary" : isTransparent ? "" : "bg-primary shadow-xl"}`}
+      className={`fixed z-50 w-full transition-all duration-300 ${opened ? 'bg-primary' : isTransparent ? '' : 'bg-primary shadow-xl'}`}
     >
       <div className="relative mx-auto flex h-[80px] max-w-content items-center justify-between px-content">
         <Link href="#home">
@@ -73,21 +44,30 @@ const Header: React.FC = () => {
             alt="João's picture"
           />
         </Link>
-        {isMobile ? (
-          <MobileNav opened={opened} setOpened={setOpened} />
-        ) : (
-          <nav className="flex items-center gap-5">
-            {links.map((link, index) => (
-              <Link key={link.title} href={link.to}>
-                <Button
-                  label={link.title}
-                  variant={index < links.length - 1 ? "text" : "default"}
-                  color="secondary"
-                />
-              </Link>
-            ))}
-          </nav>
-        )}
+        <button onClick={() => setOpened(!opened)} className="min-[700px]:hidden">
+          <IoIosMenu size={42} />
+        </button>
+        <nav
+          className={`max-[700px]: absolute left-0 top-[80px] flex h-screen w-screen flex-col items-start gap-5 bg-primary px-content pt-2 duration-300 ${opened ? 'opacity-1 translate-x-[0%]' : 'max-[700px]:-translate-x-[100%] max-[700px]:opacity-0'} min-[700px]:static min-[700px]:ml-auto min-[700px]:h-auto min-[700px]:w-auto min-[700px]:flex-row min-[700px]:items-center min-[700px]:justify-end min-[700px]:bg-transparent min-[700px]:p-0 min-[700px]:duration-0`}
+        >
+          {links.map((link, index) => (
+            <Link
+              key={link.title}
+              href={link.to}
+              onClick={(e) => {
+                e.preventDefault();
+                navigateToId(link.to, true);
+                setOpened(false);
+              }}
+            >
+              <Button
+                label={link.title}
+                variant={index < links.length - 1 ? 'text' : 'outline'}
+                color="secondary"
+              />
+            </Link>
+          ))}
+        </nav>
       </div>
     </header>
   );

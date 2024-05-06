@@ -16,36 +16,37 @@
   }
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #d1d5db;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 1px solid transparent;
+  border-radius: 100px;
+  background-color: #8070d4;
+  background-clip: content-box;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
     rgb(var(--background-start-rgb));
 
   ul.slick-dots {
-    li {
-      /* background-color: yellow; */
-
-      &::before {
-        width: 6px;
-        height: 6px;
-        background-color: yellow !important;
-      }
-    }
-
     li.slick-active {
       div {
         opacity: 1;
       }
     }
   }
-}
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  @media (min-width: 1400px) {
+    .slick-list {
+      padding-left: 70px;
+    }
   }
 }
