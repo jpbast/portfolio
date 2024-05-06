@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
   const body = (await req.json()) as Body;
 
   try {
-    const data = await resend.emails.send({
+    await resend.emails.send({
       from: `${body.name} <noreply@resend.dev>`,
       to: process.env.EMAIL_TO as string,
       subject: `Contact from website - ${body.name}`,

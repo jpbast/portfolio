@@ -26,17 +26,20 @@ const Section: React.FC<PropsWithChildren<SectionProps>> = ({
 }) => {
   return (
     <section
-      className={`relative w-full  ${isFullHeight ? 'h-screen' : ''} ${isMobileFullHeight ? 'max-[700px]:h-screen' : 'max-[700px]:h-auto'} ${backgroundImage ? 'bg-transparent' : color === 'primary' ? 'bg-gradient-to-br from-slate-900 via-indigo-950 to-primary !text-text-secondary' : 'bg-secondary bg-gradient-to-br from-gray-200 !text-text-primary'} ${className}`}
+      className={`relative w-full  ${isFullHeight ? 'h-screen' : ''} ${isMobileFullHeight ? 'max-[700px]:h-screen' : 'max-[700px]:h-auto'} ${backgroundImage ? 'bg-transparent' : color === 'primary' ? 'bg-gradient-to-br from-slate-900 via-indigo-950 to-primary !text-text-secondary' : 'bg-secondary bg-gradient-to-br from-gray-300 !text-text-primary'} ${className}`}
       {...props}
     >
       {backgroundImage && (
-        <div className="absolute -z-10 h-full w-full bg-black opacity-30">
+        <div className="absolute -z-10 h-full w-full bg-black opacity-25">
           <Image
             src={backgroundImage}
             className="bottom-0 left-0 right-0 top-0 object-cover"
             alt="Laptop over table displaying HTML code"
             fill
             sizes="100vw"
+            quality={100}
+            placeholder="blur"
+            blurDataURL="/hero-pixelated.png"
           />
         </div>
       )}

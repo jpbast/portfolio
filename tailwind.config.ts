@@ -15,7 +15,7 @@ const config: Config = {
       colors: {
         // primary: "#321F70",
         primary: colors.indigo['950'],
-        secondary: colors.yellow['50'],
+        secondary: colors.gray['100'],
         // "text-primary": "#321F70",
         'text-primary': colors.indigo['950'],
         'text-secondary': 'white',
