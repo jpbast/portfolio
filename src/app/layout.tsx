@@ -7,8 +7,8 @@ import Footer from '@/components/Footer';
 const inter = Montserrat({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'João Bast | Software Engineering',
-  description: 'Software Engineering highly experienced in building JavaScript web and mobile apps',
+  title: 'João Bast | Software Engineer',
+  description: 'Software Engineer highly experienced in building JavaScript web and mobile apps',
 };
 
 export default function RootLayout({
