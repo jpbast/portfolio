@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="overflow-x-hidden scroll-smooth">
       <head>
-        <link rel="icon" href="/favicon.png" sizes="any" />
+        <link rel="icon" href="/laptop-icon.png" sizes="any" />
       </head>
       <body className={inter.className}>
         <Header />
