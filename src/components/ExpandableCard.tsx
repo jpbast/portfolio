@@ -22,6 +22,16 @@ const ExpandableCard: React.FC<PropsWithChildren<ExpandableCardProps>> = ({
     setHeight(expanded ? containerRef.current?.scrollHeight || 0 : 0);
   }, [expanded, trigger]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setHeight(expanded ? containerRef.current?.scrollHeight || 0 : 0);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  });
+
   return (
     <div
       ref={containerRef}

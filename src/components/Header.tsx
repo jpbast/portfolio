@@ -57,6 +57,7 @@ const Header: React.FC = () => {
               onClick={(e) => {
                 e.preventDefault();
                 navigateToId(link.to, true);
+                setOpened(false);
               }}
             >
               <Button

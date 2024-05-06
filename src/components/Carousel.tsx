@@ -26,7 +26,7 @@ const SlideButton: React.FC<SlideButtonProps> = ({ position, disabled, onClick }
   return (
     <button
       onClick={onClick}
-      className={`absolute bottom-3 top-3 z-20 flex items-center justify-center bg-[#000000d0] p-8 opacity-0 transition-all hover:opacity-100 ${isLeft ? 'left-0' : 'right-0'} text-text-secondary`}
+      className={`absolute bottom-3 top-3 z-20 flex items-center justify-center bg-[#000000d0] p-8 opacity-0 transition-all hover:opacity-100 max-md:hidden ${isLeft ? 'left-0' : 'right-0'} text-text-secondary`}
     >
       {isLeft ? <FaChevronLeft size={34} /> : <FaChevronRight size={34} />}
     </button>
@@ -55,6 +55,7 @@ function Carousel<T>({ color = 'primary', renderItem, data }: CarouselProps<T>) 
     infinite: false,
     arrows: false,
     dots: false,
+    onSwipe: () => console.log('swiping'),
     customPaging: () => {
       return (
         <div
