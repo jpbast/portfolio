@@ -55,7 +55,6 @@ function Carousel<T>({ color = 'primary', renderItem, data }: CarouselProps<T>) 
     infinite: false,
     arrows: false,
     dots: false,
-    onSwipe: () => console.log('swiping'),
     customPaging: () => {
       return (
         <div

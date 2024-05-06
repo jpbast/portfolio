@@ -23,6 +23,7 @@ const ProjectCard: React.FC<CarouselItemArgs<ProjectCardProps>> = ({ data }) => 
           fill
           sizes="(max-width: 600px) 100vw, 470px"
           className="-z-10 h-full w-full object-cover"
+          loading="eager"
         />
         <h2 className="mb-1 text-2xl font-bold">{title}</h2>
         <p className="text-base">{shortDescription}</p>
@@ -43,7 +44,7 @@ const ProjectCard: React.FC<CarouselItemArgs<ProjectCardProps>> = ({ data }) => 
         </div>
         {/* Button for mobile only */}
         <button
-          className="absolute bottom-0 left-0 right-0 top-0 flex items-center justify-center gap-2 bg-[#000000e0] opacity-0 transition-all duration-300 group-hover:opacity-100 md:invisible"
+          className="absolute bottom-0 left-0 right-0 top-0 flex items-center justify-center gap-2 bg-[#000000e0] opacity-0 transition-all duration-300 md:invisible"
           onMouseDown={(e) => (mousePos.current = { x: e.clientX, y: e.clientY })}
           onMouseUp={(e) => {
             if (e.clientX === mousePos.current.x && e.clientY === mousePos.current.y) {
