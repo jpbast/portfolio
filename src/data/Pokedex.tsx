@@ -39,7 +39,7 @@ export const Pokedex: Project = {
       </p>
       <p>
         For visiting the app, you can go{' '}
-        <a href="https://jpbast-pokedex.app" target="_blank">
+        <a href="https://jpbast-pokedex.vercel.app" target="_blank">
           <span style={{ textDecoration: 'underline' }}>here</span>
         </a>
         .
