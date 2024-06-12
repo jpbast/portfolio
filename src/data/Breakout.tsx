@@ -46,7 +46,7 @@ export const Breakout: Project = {
       <p>
         This is a really big project with many different features. You can check more information
         about Breakout{' '}
-        <a href="https://www.meetbreakout.com/">
+        <a href="https://www.meetbreakout.com/" target="_blank">
           <span style={{ textDecoration: 'underline' }}>here</span>
         </a>
         .

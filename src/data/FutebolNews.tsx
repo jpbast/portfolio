@@ -21,6 +21,7 @@ export const FutebolNews: Project = {
           <a
             href="https://play.google.com/store/apps/details?id=com.futebolnews.futebolnews"
             style={{ textDecoration: 'underline' }}
+            target="_blank"
           >
             Here
           </a>{' '}
@@ -29,7 +30,11 @@ export const FutebolNews: Project = {
         <li>
           <Strong>Website: </Strong>a simple website with a few information just for introducing the
           app.{' '}
-          <a href="https://www.futebolnews.app/" style={{ textDecoration: 'underline' }}>
+          <a
+            href="https://www.futebolnews.app/"
+            style={{ textDecoration: 'underline' }}
+            target="_blank"
+          >
             Here
           </a>{' '}
           you can check it.

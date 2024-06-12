@@ -5,6 +5,7 @@ import { AppMastersAcademy } from './AppMastersAcademy';
 import { Codental } from './Codental';
 import { FutebolNews } from './FutebolNews';
 import { Roadmap } from './Roadmap';
+import { Pokedex } from './Pokedex';
 
 export const projects = [
   Breakout,
@@ -14,4 +15,5 @@ export const projects = [
   AppMastersWebsite,
   AppMastersAcademy,
   Roadmap,
+  Pokedex,
 ];
