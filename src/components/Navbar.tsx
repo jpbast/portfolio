@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { IoIosMenu } from 'react-icons/io';
 import { navigateToId } from '@/utils/navigation';
+import { IoClose } from 'react-icons/io5';
 
 const links = [
   { title: 'Home', to: 'home' },
@@ -14,7 +15,7 @@ const links = [
   { title: 'Hire me', to: 'contact' },
 ];
 
-const Header: React.FC = () => {
+const Navbar: React.FC = () => {
   const [isTransparent, setIsTransparent] = useState(true);
   const [opened, setOpened] = useState(false);
 
@@ -31,8 +32,8 @@ const Header: React.FC = () => {
   }, []);
 
   return (
-    <header
-      className={`fixed z-50 w-full transition-all duration-300 ${opened ? 'bg-primary' : isTransparent ? '' : 'bg-primary shadow-xl'}`}
+    <nav
+      className={`fixed z-50 w-full transition-all duration-300 ${opened ? 'bg-primary' : isTransparent ? 'bg-transparent' : 'bg-primary shadow-xl'}`}
     >
       <div className="relative mx-auto flex h-[80px] max-w-content items-center justify-between px-content">
         <Link href="#home">
@@ -45,7 +46,7 @@ const Header: React.FC = () => {
           />
         </Link>
         <button onClick={() => setOpened(!opened)} className="min-[700px]:hidden">
-          <IoIosMenu size={42} />
+          {opened ? <IoClose size={42} /> : <IoIosMenu size={42} />}
         </button>
         <nav
           className={`max-[700px]: absolute left-0 top-[80px] flex h-screen w-screen flex-col items-start gap-5 bg-primary px-content pt-2 duration-300 ${opened ? 'opacity-1 translate-x-[0%]' : 'max-[700px]:-translate-x-[100%] max-[700px]:opacity-0'} min-[700px]:static min-[700px]:ml-auto min-[700px]:h-auto min-[700px]:w-auto min-[700px]:flex-row min-[700px]:items-center min-[700px]:justify-end min-[700px]:bg-transparent min-[700px]:p-0 min-[700px]:duration-0`}
@@ -69,8 +70,8 @@ const Header: React.FC = () => {
           ))}
         </nav>
       </div>
-    </header>
+    </nav>
   );
 };
 
-export default Header;
+export default Navbar;

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
-import Header from '@/components/Header';
+import Navbar from '@/components/Navbar';
 import './globals.css';
 import Footer from '@/components/Footer';
 
@@ -22,7 +22,7 @@ export default function RootLayout({
         <link rel="icon" href="/laptop-icon.png" sizes="any" />
       </head>
       <body className={inter.className}>
-        <Header />
+        <Navbar />
         {children}
         <Footer />
       </body>
